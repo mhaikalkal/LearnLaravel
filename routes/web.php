@@ -9,6 +9,7 @@ use App\Models\User;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,11 +49,4 @@ Route::get('/category/{category:slug}', [CategoryController::class, 'PostsFromCa
 Route::get('/categories', [CategoryController::class, 'categories']);
 
 // author
-Route::get('/author/{author:username}', function(User $author){
-    return view('posts', [
-        'title' => 'Author Posts',
-        'name' => $author->name,
-        'username' => $author->username,
-        'posts' => $author->posts,
-    ]);
-});
+Route::get('/author/{author:username}', [UserController::class, 'PostsFromAuthor']);
