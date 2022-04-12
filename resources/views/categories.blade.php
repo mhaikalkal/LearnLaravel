@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-    <h1 class="mt-4">Categories</h1>
+    <h1 class="mt-4 mb-4">{{ $label }}</h1>
 
     @foreach ($categories as $category)
     <ul class="mt-4 mb-4">

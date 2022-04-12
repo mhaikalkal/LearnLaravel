@@ -2,6 +2,7 @@
 
 @section('container')
 
+    <h1 class="mt-4 mb-4">{{ $label }}</h1>
     @foreach ($posts as $post)
     <article  class="mt-4 mb-4 border-bottom">
         <h2>
