@@ -8,13 +8,16 @@
         <ul class="navbar-nav">
             <!-- Agar itunya setiap pindah page class active-nya pindah kita coba pakai ternary -->
             <li class="nav-item">
-                <a class="nav-link {{ ($title === "Home") ? 'active' : '' }}" href="/">Home</a>
+                <a class="nav-link {{ ($active === "Home") ? 'active' : '' }}" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ ($title === "About") ? 'active' : '' }}" href="/about">About</a>
+                <a class="nav-link {{ ($active === "About") ? 'active' : '' }}" href="/about">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ ($title === "Blog") ? 'active' : '' }}" href="/posts">Blog</a>
+                <a class="nav-link {{ ($active === "Blog") ? 'active' : '' }}" href="/posts">Blog</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ ($active === "Categories") ? 'active' : '' }}" href="/categories">Categories</a>
             </li>
         </ul>
         </div>

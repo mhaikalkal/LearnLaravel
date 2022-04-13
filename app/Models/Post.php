@@ -15,6 +15,17 @@ class Post extends Model
     // property yang tidak boleh diisi, dijaga. Sisanya boleh diisi.
     protected $guarded = ['id'];
 
+    // lazy loading ==> merupakan load data ketika disuruh, kelemahannya
+    // ketika looping, kita mengulang2 query, yang membuat performance menurun.
+    // yang harusnya query 1x kalo data ada 100, jadi eksekusi 101x
+
+    // ::with() ==> merupakan eager loading kebalikan dari lazy loading, yang artinya
+    // jadi kita load data diawal. baru di looping.
+    // query 1x kalo ada data 100, eksekusi tetep 1x
+    protected $with = ['author', 'category'];
+    // author, category ini, merupakan relasi yang mau diambil ke page-nya.
+    // karena si posts ini mau ngambil siapa author dan apa category name-nya maka ya 2 itu yang diambil.
+
     public function category()
     {
         return $this->belongsTo(Category::class);
