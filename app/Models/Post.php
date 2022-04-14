@@ -73,11 +73,13 @@ class Post extends Model
             });
         });
 
-        $query->when($filters['author'] ?? false, function($query, $author) {
-            return $query->whereHas('author', function($query) use ($author) {
-                $query->where('username', $author);
-            });
-        });
+        // kalau arrow function lebih gampang
+        $query->when($filters['author'] ?? false, fn($query, $author) =>
+            // gausah pake use, soalnya scope nya di function ini
+            $query->whereHas('author', fn($query) =>
+                $query->where('username', $author))
+        );
+
     }
 
 }

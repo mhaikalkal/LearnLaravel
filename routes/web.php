@@ -1,15 +1,10 @@
 <?php
 
-// Models
-
 use App\Http\Controllers\CategoryController;
-use App\Models\Post;
-use App\Models\Category;
-use App\Models\User;
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,8 +42,24 @@ Route::get('/posts', [PostController::class, 'index']); // pake class PostContro
 Route::get('/post/{post:slug}', [PostController::class, 'show']);
 
 // category
-Route::get('/category/{category:slug}', [CategoryController::class, 'PostsFromCategory']);
+// Route::get('/category/{category:slug}', [CategoryController::class, 'PostsFromCategory']);
 Route::get('/categories', [CategoryController::class, 'categories']);
 
 // author
-Route::get('/author/{author:username}', [UserController::class, 'PostsFromAuthor']);
+// Route::get('/author/{author:username}', [UserController::class, 'PostsFromAuthor']);
+
+// name('login') disini kita kasih si route get /login alias 'login'.
+Route::get('/login', [AuthController::class,'login'])->name('login')->middleware('guest'); // login hanya bisa diakses sebagai guest/ belum login
+Route::post('/login', [AuthController::class,'authenticate']); // untuk login
+Route::post('/logout', [AuthController::class,'logout']); // untuk logout
+
+Route::get('/register', [AuthController::class,'register'])->middleware('guest'); // login hanya bisa diakses sebagai guest/ belum login
+Route::post('/register', [AuthController::class,'store']); // untuk register
+
+// karena cuma buat landing ke dashboard jadi kita bikin closure aja biar ga ribet
+Route::get('/dashboard', function(){
+    return view('dashboard.index', [
+        'username' => auth()->user()->username,
+        'name' => auth()->user()->name,
+    ]);
+})->middleware('auth'); // hanya untuk yang sudah login
