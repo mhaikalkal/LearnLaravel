@@ -41,7 +41,7 @@
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Thumbnail</label>
-            <input type="hidden" value="{{ old('image', post->image) }}" name="oldImage">
+            <input type="hidden" value="{{ old('image', $post->image) }}" name="oldImage">
             @if($post->image)
                 <img src="{{ asset('storage/' . $post->image) }}" class="img-preview img-fluid mb-3 col-sm-6 d-block">
             @else
