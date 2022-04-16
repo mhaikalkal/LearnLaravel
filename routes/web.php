@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\AdminCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,3 +71,13 @@ Route::resource('/dashboard/posts', DashboardPostController::class)->middleware(
 
 // gatau kenapa harus /post/ bukan /posts/ kaya di tutorial, aneh
 Route::get('/dashboard/post/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
+
+// resource kan bikin routes otomatis nih,
+// nah karena ada method show, dan karena kita ga akan pake rout nya,
+// maka bisa kita hilangkan/kecualikan dengan cara ->except('show);
+// php artisan route:list
+// hasilnya si show ilang.
+
+// Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show'); // di controller ini kita pake gate, jadi gausah middleware.
+// kita kolaborasi antara gate dan middleware. middleware cuma bisa dipakai di routes. sedangkan gate dimanapun.
+Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
