@@ -52,7 +52,7 @@ class DashboardPostController extends Controller
 
         $validateData = $request->validate([
             'title' => ['required', 'max:255'],
-            'slug' => ['required', 'unique:posts'],
+            'slug' => ['required', 'unique:posts'], // unique dari table posts [gaakan ada yg sama di table posts]
             'image' => ['image', 'file', 'max:1024'],
             'category_id' => ['required'],
             'body'=> ['required'],
