@@ -81,3 +81,6 @@ Route::get('/dashboard/post/checkSlug', [DashboardPostController::class, 'checkS
 // Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show'); // di controller ini kita pake gate, jadi gausah middleware.
 // kita kolaborasi antara gate dan middleware. middleware cuma bisa dipakai di routes. sedangkan gate dimanapun.
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
+
+// Route::get('/dashboard/checkSlug', [AdminCategoryController::class, 'checkSlug'])->middleware('admin');
+
