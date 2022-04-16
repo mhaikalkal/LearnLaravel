@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,3 +64,9 @@ Route::get('/dashboard', function(){
         'name' => auth()->user()->name,
     ]);
 })->middleware('auth'); // hanya untuk yang sudah login
+
+// Dashboard Post, dia type resource karena kita buat crud
+Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
+
+// gatau kenapa harus /post/ bukan /posts/ kaya di tutorial, aneh
+Route::get('/dashboard/post/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');

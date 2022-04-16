@@ -25,13 +25,15 @@ class DatabaseSeeder extends Seeder
         //     'password' => bcrypt('123456')
         // ]);
 
-        // User::create([
-        //     'name' => 'Monica',
-        //     'email' => 'monica@gmail.com',
-        //     'password' => bcrypt('123456')
-        // ]);
+        User::create([
+            'name' => 'Monica R. Kelleher',
+            'username' => "monica",
+            'email' => 'monica@gmail.com',
+            'password' => bcrypt('123456')
+        ]);
 
-        User::factory(4)->create();
+        User::factory(3)->create();
+
 
         Category::create([
             'name' => 'Web Programming',
@@ -48,7 +50,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'art'
         ]);
 
-        Post::factory(20)->create();
+        Post::factory(50)->create();
 
         // Post::create([
         //     'title' => 'Judul Pertama',

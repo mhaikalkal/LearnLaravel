@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Cviebrock\EloquentSluggable\Sluggable;
+use App\Models\Category;
+
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     // property yang bisa diisi. Sisanya tidak boleh diisi.
     // protected $fillable = ['title', 'slug', 'excerpt', 'body'];
@@ -82,4 +85,18 @@ class Post extends Model
 
     }
 
+    // override pencarian menggunakan id, jadi bakal default by slug.
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 }
